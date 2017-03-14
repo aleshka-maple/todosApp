@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 
 import styles from './styles/TodoList.less'
 import delImage from './ico/Delete-icon-128.png'
+import lockedImage from './ico/lock-png-image-38872.png'
+import unlockedImage from './ico/unlock-png-image-38843.png'
 
 export default class TodoList extends Component {
     handleDeleteClick(e) {
@@ -10,6 +12,10 @@ export default class TodoList extends Component {
     }
     handleChangeClick(e) {
         this.props.changeTodo(this.props.list[e.currentTarget.id])
+    }
+    handleLockClick(e) {
+        e.stopPropagation()
+        this.props.lockTodo(e.currentTarget.id)
     }
 
     render() {
@@ -24,7 +30,10 @@ export default class TodoList extends Component {
                                 return <article key={ index } id={ index } className='Todo' onClick={ ::this.handleChangeClick } >
                                     <h3>{ item.title } </h3>
                                     <p>{ item.text }</p>
-                                    <img className='button_delete' id={ index } onClick={ ::this.handleDeleteClick } src={ delImage }></img>
+                                    <img className='button button_delete' id={ index } onClick={ ::this.handleDeleteClick } src={ delImage }></img>
+                                    <img className='button button_lock' id={ index }
+                                         onClick={ ::this.handleLockClick }
+                                         src={ item.locked ? lockedImage : unlockedImage }></img>
                                 </article>
                             }
                             )

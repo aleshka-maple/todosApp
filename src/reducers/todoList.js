@@ -22,6 +22,10 @@ export default function todoList(state = initialState, action) {
         case 'SAVE_DATA_LOCAL':
             localStorage['todosAppData'] = JSON.stringify(state)
             return state
+        case 'LOCK_TODO':
+            newState = [...state]
+            newState[data].locked = !newState[data].locked
+            return newState
         default:
             return state
     }

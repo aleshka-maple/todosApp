@@ -25,7 +25,7 @@ export default class TodoEdit extends Component {
     }
 
     render() {
-        const { title, text } = this.props
+        const { title, text, locked } = this.props
 
         return <form className={ styles.TodoEdit }>
             <h1>Todo</h1>
@@ -37,7 +37,7 @@ export default class TodoEdit extends Component {
             <br/><textarea className='TodoEditText' ref='text' defaultValue={ text } rows='6'></textarea>
 
             <br/><button className='button button_add' type='submit' onClick={ ::this.handleAddClick }>Add</button>
-            <button className='button button_save' type='button' onClick={ ::this.handleSaveClick }>Save</button>
+            <button className='button button_save' disabled={ locked } type='button' onClick={ ::this.handleSaveClick }>Save</button>
         </form>
     }
 }

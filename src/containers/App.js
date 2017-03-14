@@ -10,11 +10,17 @@ import styles from './styles/App.less' // eslint-disable-line
 class App extends Component {
     render() {
         const { todoList, todoEdit } = this.props
-        const { addTodo, saveTodo, changeTodo, deleteTodo } = this.props.actions
+        const { addTodo, saveTodo, changeTodo, deleteTodo, lockTodo } = this.props.actions
 
         return <div className='app'>
-            <TodoList list={ todoList } changeTodo={ changeTodo } deleteTodo={ deleteTodo } />
-            <TodoEdit title={ todoEdit.title } text={ todoEdit.text } id={ todoEdit.id } addTodo={ addTodo } saveTodo={ saveTodo }/>
+            <TodoList list={ todoList } changeTodo={ changeTodo } deleteTodo={ deleteTodo } lockTodo={ lockTodo } />
+            <TodoEdit title={ todoEdit.title }
+                      text={ todoEdit.text }
+                      id={ todoEdit.id }
+                      locked={ todoEdit.locked }
+                      addTodo={ addTodo }
+                      saveTodo={ saveTodo }
+            />
         </div>
     }
 }

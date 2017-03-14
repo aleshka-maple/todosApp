@@ -31,11 +31,24 @@ export function saveTodo(data) {
     }
 }
 
-export function deleteTodo(id) {
+export function deleteTodo(index) {
     return (dispatch) => {
         dispatch({
             type: 'DELETE_TODO',
-            payload: id
+            payload: index
+        })
+
+        dispatch({
+            type: 'SAVE_DATA_LOCAL'
+        })
+    }
+}
+
+export function lockTodo(index) {
+    return (dispatch) => {
+        dispatch({
+            type: 'LOCK_TODO',
+            payload: index
         })
 
         dispatch({
