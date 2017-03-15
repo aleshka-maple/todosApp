@@ -16,8 +16,10 @@ export default class TodoEdit extends Component {
         this.props.addTodo(this.collectData())
         e.preventDefault()
     }
-    handleSaveClick() {
+    handleSaveClick(e) {
+        if (!this.collectData().title.trim().length) return
         this.props.saveTodo(this.collectData())
+        e.preventDefault()
     }
     componentWillUpdate(nextProps) {
         this.refs.title.value = nextProps.title;
@@ -37,7 +39,7 @@ export default class TodoEdit extends Component {
             <br/><textarea className='TodoEditText' ref='text' defaultValue={ text } rows='6'></textarea>
 
             <br/><button className='button button_add' type='submit' onClick={ ::this.handleAddClick }>Add</button>
-            <button className='button button_save' disabled={ locked } type='button' onClick={ ::this.handleSaveClick }>Save</button>
+            <button className='button button_save' disabled={ locked } type='submit' onClick={ ::this.handleSaveClick }>Save</button>
         </form>
     }
 }
